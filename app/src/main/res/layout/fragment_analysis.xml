@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".screens.fragments.analysis.create.AnalysisCreateFragment">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/edit_name_analysis"
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:hint="Название анализа/обследования"
+        android:layout_height="50dp"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/edit_comment"
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:hint="Комментарий"
+        android:layout_height="50dp"/>
+
+    <LinearLayout
+        android:id="@+id/linear_file_del"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_file"
+            android:textAlignment="center"
+            android:text="@string/text_path_file"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"/>
+
+        <ImageButton
+            android:id="@+id/img_btn_del_file"
+            android:src="@drawable/baseline_delete_forever_24"
+            android:backgroundTint="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_choose_file"
+        android:textAllCaps="false"
+        android:text="Выбрать файл"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_save"
+        android:textAllCaps="false"
+        android:text="Сохранить"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+</LinearLayout>

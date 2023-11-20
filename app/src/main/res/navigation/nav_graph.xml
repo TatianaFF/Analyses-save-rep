@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.myapp.screens.fragments.main.MainFragment"
+        android:label="Системы органов"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_listAnalysesFragment"
+            app:destination="@id/listAnalysesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/analysisCreateFragment"
+        android:name="com.example.myapp.screens.fragments.analysis.create.AnalysisCreateFragment"
+        android:label="Создание анализа"
+        tools:layout="@layout/fragment_analysis" >
+        <action
+            android:id="@+id/action_analysisFragment_to_listAnalysesFragment"
+            app:destination="@id/listAnalysesFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/analysisEditFragment"
+        android:name="com.example.myapp.screens.fragments.analysis.edit.AnalysisEditFragment"
+        android:label="Редактирование анализа"
+        tools:layout="@layout/fragment_analysis" >
+        <action
+            android:id="@+id/action_analysisFragment_to_listAnalysesFragment"
+            app:destination="@id/listAnalysesFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/listAnalysesFragment"
+        android:name="com.example.myapp.screens.fragments.list_analyses.ListAnalysesFragment"
+        android:label="Список анализов"
+        tools:layout="@layout/fragment_list_analyses" >
+        <action
+            android:id="@+id/action_listAnalysesFragment_to_analysisCreateFragment"
+            app:destination="@id/analysisCreateFragment" />
+        <action
+            android:id="@+id/action_listAnalysesFragment_to_analysisEditFragment"
+            app:destination="@id/analysisEditFragment" />
+        <action
+            android:id="@+id/action_listAnalysesFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+</navigation>
