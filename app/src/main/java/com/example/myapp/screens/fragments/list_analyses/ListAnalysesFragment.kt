@@ -12,6 +12,7 @@ import com.example.myapp.R
 import com.example.myapp.adapters.AdapterListAnalyses
 import com.example.myapp.databinding.FragmentListAnalysesBinding
 import com.example.myapp.models.Analysis
+import com.example.myapp.screens.activity.MainActivity
 import com.example.myapp.screens.fragments.analysis.create.AnalysisCreateFragment
 import com.example.myapp.screens.fragments.analysis.create.AnalysisCreateViewModel
 import com.example.myapp.screens.fragments.analysis.edit.AnalysisEditViewModel
@@ -36,8 +37,10 @@ class ListAnalysesFragment : Fragment() {
         return binding.root
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        (activity as MainActivity). setTitleToolbar(viewModel.nameOrgan)
 
         val adapter = AdapterListAnalyses(requireContext())
         binding.rvOrganSystems.adapter = adapter

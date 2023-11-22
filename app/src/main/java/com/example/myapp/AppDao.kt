@@ -37,6 +37,9 @@ interface AppDao {
             "WHERE organ_system = :idOS")
     fun getOrgansByOrganSystemId(idOS: Long): List<Organ>
 
+    @Query("SELECT * FROM organ WHERE id_organ = :id")
+    fun getOrganById(id: Long): LiveData<Organ>
+
 //    @Transaction
     @Update
     fun updateAnalysis(analysis: Analysis) {

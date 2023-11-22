@@ -17,4 +17,6 @@ interface AnalysisRepository {
     suspend fun getOrganSystems(): List<OrganSystem>
 
     suspend fun getOrgansByOrganSystemId(idOS: Long): List<Organ>
+
+    fun getOrganById(id: Long): LiveData<Organ>
 }

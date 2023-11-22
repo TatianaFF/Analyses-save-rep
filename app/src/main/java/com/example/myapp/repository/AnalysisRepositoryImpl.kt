@@ -40,4 +40,8 @@ class AnalysisRepositoryImpl@Inject constructor(private val dao: AppDao): Analys
     override suspend fun getAnalysisById(id: Long): Analysis {
         return dao.getAnalysisById(id)
     }
+
+    override fun getOrganById(id: Long): LiveData<Organ> {
+        return dao.getOrganById(id)
+    }
 }

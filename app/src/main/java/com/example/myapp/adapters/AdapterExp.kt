@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
 import com.example.myapp.R
 
 class AdapterExp(

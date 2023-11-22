@@ -11,6 +11,7 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import com.example.myapp.models.Analysis
+import com.example.myapp.models.Organ
 import com.example.myapp.repository.AnalysisRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -23,9 +24,12 @@ class ListAnalysesViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    val idOrgan = savedStateHandle.getLiveData<Long>(KEY_ID_ORGAN).value ?: throw IllegalArgumentException("Не удалось получить id органа")
+    val bundle = savedStateHandle.getLiveData<Pair<Long, String>>(KEY_ID_NAME_ORGAN).value ?: throw IllegalArgumentException("Не удалось получить id органа")
+    val idOrgan = bundle.first
+    val nameOrgan = bundle.second
     val analyses: LiveData<List<Analysis>>
         get() = getAnalysesByIdOrgan(idOrgan)
+
 //            liveData(viewModelScope.coroutineContext) {
 //            Log.e("VM", "get")
 //            emit(getAnalysesByIdOrgan(idOrgan))
@@ -37,10 +41,6 @@ class ListAnalysesViewModel @Inject constructor(
 //            }
 //        }
 
-//    init {
-//
-//    }
-
     fun deleteAnalysis(idAnalysis: Long) = viewModelScope.launch { repository.deleteAnalysis(idAnalysis) }
 
     private fun getAnalysesByIdOrgan(idOrgan: Long): LiveData<List<Analysis>> {
@@ -48,6 +48,6 @@ class ListAnalysesViewModel @Inject constructor(
     }
 
     companion object {
-        private const val KEY_ID_ORGAN = "ID_ORGAN"
+        private const val KEY_ID_NAME_ORGAN = "ID_NAME_ORGAN"
     }
 }

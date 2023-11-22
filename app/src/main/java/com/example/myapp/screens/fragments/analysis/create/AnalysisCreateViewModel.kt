@@ -17,5 +17,4 @@ import javax.inject.Inject
 class AnalysisCreateViewModel@Inject constructor(
     private val repository: AnalysisRepositoryImpl
 ) : ViewModel() {
-
 }

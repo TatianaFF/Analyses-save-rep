@@ -10,12 +10,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.myapp.R
 import com.example.myapp.databinding.FragmentAnalysisBinding
 import com.example.myapp.models.Analysis
+import com.example.myapp.screens.activity.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.io.FileOutputStream
@@ -40,8 +43,8 @@ abstract class AnalysisBaseFragment: Fragment() {
         return binding.root
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.btnSave.setOnClickListener {
             if (validateAnalysis()) {
@@ -58,9 +61,15 @@ abstract class AnalysisBaseFragment: Fragment() {
 
         binding.imgBtnDelFile.setOnClickListener {
             val file = File(binding.tvFile.text.toString())
-            val result = file.delete()
-            binding.tvFile.text = getString(R.string.text_path_file)
+            file.delete()   //val result =
+            binding.constraintFilePath.isVisible = false
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+
     }
 
     private fun saveAnalysis() {
@@ -82,11 +91,13 @@ abstract class AnalysisBaseFragment: Fragment() {
         if (result.resultCode == Activity.RESULT_OK) {
             result.data?.data?.let { uri ->
                 val file = saveFile(uri)
+                binding.constraintFilePath.isVisible = true
                 binding.tvFile.text = file.path
             }
         }}
 
     private fun saveFile(uri: Uri): File {
+        Toast.makeText(requireContext(), "save file", Toast.LENGTH_SHORT).show()
         val inputStream = activity?.contentResolver?.openInputStream(uri)
         val nameFile = requireNotNull(getFileName(uri)) {"Ошибка при определении названия файла"}
         var file: File?

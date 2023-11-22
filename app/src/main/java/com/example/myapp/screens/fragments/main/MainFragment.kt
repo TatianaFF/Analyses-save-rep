@@ -36,9 +36,6 @@ class MainFragment : Fragment() {
         super.onResume()
 
         viewModel.listOrganSystemOrgans.observe(viewLifecycleOwner) { listPair ->
-            Log.e("mainfragment", listPair[0].toString())
-//            adapterOrganSystems.setListOrganSystems(list)
-
             val titleList = arrayListOf<String>()
             val dataList = hashMapOf<String, List<String>>()
             listPair.forEach { pair ->
@@ -50,7 +47,7 @@ class MainFragment : Fragment() {
             binding.listViewExp.setAdapter(adapter)
 
             binding.listViewExp.setOnChildClickListener { _, _, groupPosition, childPosition, _ ->
-                val bundle = bundleOf(KEY_ID_ORGAN to listPair[groupPosition].second[childPosition].id)
+                val bundle = bundleOf(KEY_ID_NAME_ORGAN to Pair(listPair[groupPosition].second[childPosition].id, listPair[groupPosition].second[childPosition].name))
                 findNavController().navigate(R.id.listAnalysesFragment, bundle)
 //                replaceMainFragmentAnalysisFragment(dataList[(titleList)[groupPosition]]!![childPosition], (titleList)[groupPosition])
 //                Toast.makeText(
@@ -74,6 +71,6 @@ class MainFragment : Fragment() {
     }
 
     companion object {
-        private const val KEY_ID_ORGAN = "ID_ORGAN"
+        private const val KEY_ID_NAME_ORGAN = "ID_NAME_ORGAN"
     }
 }

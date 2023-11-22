@@ -1,12 +1,18 @@
 package com.example.myapp.screens.activity
 
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.graphics.ColorFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.widget.AppCompatImageButton
+import androidx.core.view.children
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.myapp.R
 import com.example.myapp.databinding.ActivityMainBinding
@@ -24,20 +30,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navController = findNavController(R.id.nav_fragment)
+
         val config = AppBarConfiguration(navController.graph)
         binding.toolbar.setupWithNavController(navController, config)
 
-//        applicationContext.openFileOutput("exp1.txt", Context.MODE_PRIVATE).use {
-//            it.write("text of file".toByteArray())
-//        }
 
-//        val path = this.getExternalFilesDir(null)
-//        val folder = File(path, "folder")
-//        folder.mkdirs()
-//        Toast.makeText(this, folder.exists().toString(), Toast.LENGTH_SHORT).show()
-//        val file = File(folder, "file_name.txt")
-//        file.appendText("data")
+    }
 
-
+    fun setTitleToolbar(title: String) {
+        binding.toolbar.title = title
     }
 }
