@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/customshape"
     android:backgroundTint="#e7c6ff"
+    android:padding="12dp"
+    android:layout_marginBottom="8dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -10,8 +12,6 @@
         android:id="@+id/tv_analysis_files"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:text="Name analysis"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,8 +23,6 @@
         android:id="@+id/img_btn_del_analysis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:background="@null"
         android:src="@drawable/baseline_delete_24"
         app:layout_constraintBottom_toBottomOf="parent"

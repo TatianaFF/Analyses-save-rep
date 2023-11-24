@@ -17,6 +17,7 @@ import com.example.myapp.screens.fragments.analysis.create.AnalysisCreateFragmen
 import com.example.myapp.screens.fragments.analysis.create.AnalysisCreateViewModel
 import com.example.myapp.screens.fragments.analysis.edit.AnalysisEditViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.File
 
 @AndroidEntryPoint
 class ListAnalysesFragment : Fragment() {
@@ -47,7 +48,6 @@ class ListAnalysesFragment : Fragment() {
         viewModel.analyses.observe(viewLifecycleOwner) { _analyses ->
             analyses = _analyses
             adapter.submitList(analyses.map { it.name })
-            Toast.makeText(requireContext(), "${analyses.size}", Toast.LENGTH_SHORT).show()
         }
 
         adapter.onItemClick = { position ->
@@ -58,6 +58,10 @@ class ListAnalysesFragment : Fragment() {
         }
         adapter.onDelClick = { position ->
             viewModel.deleteAnalysis(analyses[position].id)
+            analyses[position].filePath?.let { path ->
+                val file = File(path)
+                file.delete()
+            }
         }
 
         binding.btnFloatCreateAnalisis.setOnClickListener {

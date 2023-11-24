@@ -1,6 +1,7 @@
 package com.example.myapp.screens.fragments.analysis.edit
 
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.example.myapp.models.Analysis
 import com.example.myapp.screens.fragments.analysis.base.AnalysisBaseFragment
@@ -29,7 +30,10 @@ class AnalysisEditFragment: AnalysisBaseFragment() {
 
             binding.editNameAnalysis.setText(analysis.name)
             binding.editComment.setText(analysis.comment)
-            binding.tvFile.text = analysis.filePath
+            analysis.filePath?.let {  path ->
+                binding.constraintFilePath.isVisible = true
+                binding.tvFile.text = analysis.filePath
+            }
         }
     }
 }

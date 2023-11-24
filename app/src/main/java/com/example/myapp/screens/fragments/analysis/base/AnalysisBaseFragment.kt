@@ -66,12 +66,6 @@ abstract class AnalysisBaseFragment: Fragment() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-
-
-    }
-
     private fun saveAnalysis() {
         viewModel.updateAnalysis(newAnalysis)
     }
@@ -92,19 +86,16 @@ abstract class AnalysisBaseFragment: Fragment() {
             result.data?.data?.let { uri ->
                 val file = saveFile(uri)
                 binding.constraintFilePath.isVisible = true
-                binding.tvFile.text = file.path
+                binding.tvFile.text = file.name
             }
         }}
 
     private fun saveFile(uri: Uri): File {
-        Toast.makeText(requireContext(), "save file", Toast.LENGTH_SHORT).show()
         val inputStream = activity?.contentResolver?.openInputStream(uri)
         val nameFile = requireNotNull(getFileName(uri)) {"Ошибка при определении названия файла"}
         var file: File?
         inputStream.use { input ->
-            val nameFolder = idOrgan
-            val folder = File(activity?.getExternalFilesDir(null), nameFolder.toString()).apply { mkdir() }
-            file = File(folder, nameFile)
+            file = File(activity?.getExternalFilesDir(null), nameFile)
             FileOutputStream(file).use { output ->
                 val buffer = ByteArray(4 * 1024)
                 var read: Int = -1
